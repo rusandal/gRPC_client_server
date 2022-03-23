@@ -1,0 +1,16 @@
+syntax = "proto3";
+package com.example.grpc;
+
+message HelloRequest {
+  string name = 1;
+  repeated string hobby= 2;
+}
+message HelloResponse {
+  string greeting = 1;
+}
+service GreetingService {
+  //Для одного ответа
+  //rpc greeting(HelloRequest) returns (HelloResponse);
+  //реализация для потока данных от клиента
+  rpc greeting(HelloRequest) returns (stream HelloResponse);
+}
